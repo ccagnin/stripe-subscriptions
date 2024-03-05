@@ -1,0 +1,34 @@
+{
+  "name": "mercado-pago-assinatura",
+  "version": "1.0.0",
+  "description": "Microserviço de gerenciamento de assinaturas via mercado pago",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "start": "nodemon index.js"
+  },
+  "author": "Caroline Cagnin",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^5.10.2",
+    "axios": "^1.6.7",
+    "body-parser": "^1.20.2",
+    "consolidate": "^1.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.9",
+    "express": "^4.18.3",
+    "mercadopago": "^2.0.8",
+    "nodemon": "^3.1.0",
+    "pg": "^8.11.3",
+    "stripe": "^14.19.0",
+    "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "prettier": "^3.2.5",
+    "prettier-eslint": "^16.3.0"
+  }
+}
