@@ -1,24 +1,23 @@
-const { MongoClient, ServerApiVersion } = require("mongodb");
+const mysql = require("mysql2/promise");
+require("dotenv").config();
 
-const uri = process.env.DATABASE_URL;
-const dbName = "Cluster0";
-
-const client = new MongoClient(uri, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
-  },
+const connection = mysql.createConnection({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE,
 });
 
-async function connection() {
+async function connectToDatabase() {
   try {
-    await client.connect();
-    await client.db(dbName).command({ ping: 1 });
-    console.log("Ping command executed successfully.");
-  } finally {
-    await client.close();
+    const conn = await connection;
+    console.log("Connected to the database");
+    return conn;
+  } catch (error) {
+    console.log("Error connecting to the database: ", error);
   }
 }
 
-module.exports = { connection };
+module.exports = {
+  connectToDatabase,
+};
