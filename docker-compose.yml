@@ -1,18 +1,14 @@
 services:
-
-  db:
-    image: postgres:13
+  mongo:
+    container_name: pineapp-stripe-db
+    image: tutum/mongodb
+    command: --replSet rs0
     ports:
-      - "5433:5432"
+      - "27017:27017"
+      - "28017:28017"
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 12345
-      POSTGRES_DB: mp-subscription-db
+      - PASSWORD=123456
     volumes:
-      - db-data:/var/lib/postgresql/data
-
-volumes:
-  db-data:
-    name: mp-subscription-db
+      - /data/mongo:/data/db
 
 

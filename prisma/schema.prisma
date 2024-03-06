@@ -9,20 +9,23 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
-model Test {
-  id    Int     @id @default(autoincrement())
-  user  String
-  email String
-  role  String
+model Customer {
+  id        String  @id @map("_id")
+  name      String
+  email     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
-model Client {
-  id    Int     @id @default(autoincrement())
-  sessionId  String
-  sessionUrl String
-  paidSub   Boolean
+model Subscription {
+  id        String  @id @map("_id")
+  customerId String
+  priceId   String
+  status    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
