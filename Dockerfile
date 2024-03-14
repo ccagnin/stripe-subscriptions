@@ -24,4 +24,4 @@ COPY . .
 EXPOSE 4000
 
 # Run the application.
-CMD npm run
+CMD npm install && npm start
