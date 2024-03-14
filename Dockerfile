@@ -20,6 +20,8 @@ USER node
 # Copy the rest of the source files into the image.
 COPY . .
 
+RUN sudo chown -R node:node .
+
 RUN npm install
 
 # Expose the port that the application listens on.
