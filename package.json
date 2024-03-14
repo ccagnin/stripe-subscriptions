@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "test",
-    "start": "nodemon index.js",
-    "prod": "node index.js"
+    "start": "nodemon index.js"
   },
   "author": "Caroline Cagnin",
   "license": "ISC",
