@@ -2,12 +2,12 @@ const stripe = require("stripe")(process.env.STRIPE_KEY);
 const { createCustomer } = require("../services/customerService");
 const { createSubscription } = require("../services/subscriptionService");
 
-const createCustomerController = async (req, res) => {
-  // const { email, name } = req.body;
+const paymentController = async (req, res) => {
+  const { email, name, price_id } = req.body;
   try {
     const customer = await stripe.customers.create({
-      email: "teste@gmail.com",
-      name: "teste",
+      email,
+      name,
     });
 
     const savedCustomer = await createCustomer(customer);
@@ -17,8 +17,6 @@ const createCustomerController = async (req, res) => {
       { customer: customer.id },
       { apiVersion: process.env.STRIPE_API_VERSION },
     );
-
-    const price_id = "price_1Or2MeJb0HiN0pQ4TbG4eMiT";
 
     const subscription = await stripe.subscriptions.create({
       customer: customer.id,
@@ -51,5 +49,5 @@ const createCustomerController = async (req, res) => {
 };
 
 module.exports = {
-  createCustomerController,
+  paymentController,
 };

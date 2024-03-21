@@ -1,13 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const {
-  createCustomerController,
-} = require("../controllers/customerController");
-const {
-  createSubscriptionController,
-} = require("../controllers/subscriptionController");
+const { paymentController } = require("../controllers/paymentController");
 
-router.post("/pay", createCustomerController);
-router.post("/create-subscription", createSubscriptionController);
+router.post("/pay", paymentController);
 
 module.exports = router;
