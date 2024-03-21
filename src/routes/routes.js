@@ -7,7 +7,7 @@ const {
   createSubscriptionController,
 } = require("../controllers/subscriptionController");
 
-router.post("/create-customer", createCustomerController);
+router.post("/pay", createCustomerController);
 router.post("/create-subscription", createSubscriptionController);
 
 module.exports = router;
