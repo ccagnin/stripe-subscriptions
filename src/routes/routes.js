@@ -1,13 +1,11 @@
 const express = require("express");
 const router = express.Router();
+const { paymentController } = require("../controllers/paymentController");
 const {
-  createCustomerController,
-} = require("../controllers/customerController");
-const {
-  createSubscriptionController,
-} = require("../controllers/subscriptionController");
+  cancelSubscriptionController,
+} = require("../controllers/cancelSubscriptionController");
 
-router.post("/create-customer", createCustomerController);
-router.post("/create-subscription", createSubscriptionController);
+router.post("/pay", paymentController);
+router.patch("/cancel", cancelSubscriptionController);
 
 module.exports = router;
