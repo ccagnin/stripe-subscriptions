@@ -36,6 +36,7 @@ const paymentController = async (req, res) => {
         setupIntent: setupIntent.client_secret,
         ephemeralKey: ephemeralKey.secret,
         customer: customer.id,
+        subscriptionId: savedSubscription.id,
       });
     } else {
       throw new Error(

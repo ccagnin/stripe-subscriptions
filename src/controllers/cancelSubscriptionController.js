@@ -2,13 +2,18 @@
 const stripe = require("stripe")(process.env.STRIPE_KEY);
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
+const { getSubscriptionBySubId } = require("../services/subscriptionService");
 
 const cancelSubscriptionController = async (req, res) => {
   const { subscriptionId } = req.body;
   try {
-    const subscription = await stripe.subscriptions.cancel(subscriptionId);
+    const subscription = await getSubscriptionBySubId(subscriptionId);
 
-    const deletedSubscription = await prisma.subscription.update({
+    const cancelledSubscription = await stripe.subscriptions.cancel(
+      subscription.stripeSubscriptionId,
+    );
+
+    await prisma.subscription.update({
       where: {
         id: subscriptionId,
       },
@@ -17,9 +22,7 @@ const cancelSubscriptionController = async (req, res) => {
       },
     });
 
-    console.log("Assinatura cancelada:", deletedSubscription);
-
-    res.json({ message: "Subscription canceled" });
+    res.json({ subscription: cancelledSubscription });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
