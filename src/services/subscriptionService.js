@@ -20,6 +20,21 @@ const createSubscription = async (subscriptionData) => {
   }
 };
 
+const getSubscriptionBySubId = async (cusId, subId) => {
+  try {
+    const subscription = await prisma.subscription.findUnique({
+      where: {
+        id: subId,
+      },
+    });
+
+    return subscription;
+  } catch (error) {
+    throw new Error("Error getting subscription: " + error.message);
+  }
+};
+
 module.exports = {
   createSubscription,
+  getSubscriptionBySubId,
 };
