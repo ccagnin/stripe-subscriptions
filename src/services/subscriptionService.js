@@ -20,11 +20,12 @@ const createSubscription = async (subscriptionData) => {
   }
 };
 
-const getSubscriptionBySubId = async (cusId, subId) => {
+const getSubscriptionBySubId = async (subscriptionId) => {
+  console.log("Subscription ID to get subs:", subscriptionId);
   try {
     const subscription = await prisma.subscription.findUnique({
       where: {
-        id: subId,
+        id: subscriptionId,
       },
     });
 
